@@ -14,11 +14,14 @@ use App\Http\Controllers\QuotesController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/quotes', [QuotesController::class, 'index']);
-Route::post('/store', [QuotesController::class, 'store']);
-Route::get('/quotes/{id}', [QuotesController::class, 'show']);
-Route::put('/quotes/{id}', [QuotesController::class, 'update']);
-Route::delete('/quotes/{id}', [QuotesController::class, 'destroy']);
+Route::group(function(){
+    Route::get('/quotes', [QuotesController::class, 'index']);
+    Route::post('/store', [QuotesController::class, 'store']);
+    Route::get('/quotes/{id}', [QuotesController::class, 'show']);
+    Route::put('/quotes/{id}', [QuotesController::class, 'update']);
+    Route::delete('/quotes/{id}', [QuotesController::class, 'destroy']);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
